@@ -6,8 +6,6 @@ function App() {
   const [mantra, setMantra] = useState(defaultMantra)
   const [note, setNote] = useState()
 
-  const isWindowContext = typeof window !== "undefined";
-
   const runSpeechRecognition = () => {
     let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     let recognition = new SpeechRecognition();
