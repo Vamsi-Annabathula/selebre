@@ -1,22 +1,47 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+  const defaultMantra = "Blow the candles"
+  const [mantra, setMantra] = useState(defaultMantra)
+  const [note, setNote] = useState()
+
+  const isWindowContext = typeof window !== "undefined";
+
+  const runSpeechRecognition = () => {
+    let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition = new SpeechRecognition();
+
+    // This runs when the speech recognition service starts
+    recognition.onstart = function () {
+      setNote("Say the mantra")
+      //action.innerHTML = "<small>listening, please speak...</small>";
+    };
+
+    recognition.onspeechend = function () {
+      setNote("Mantra recorded")
+      recognition.stop();
+    }
+
+    // This runs when the speech recognition service returns result
+    recognition.onresult = function (event) {
+      let transcript = event.results[0][0].transcript;
+      setMantra(transcript)
+    };
+
+    // start recognition
+    recognition.start();
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        The Mantra is <h4 >-- {mantra}</h4>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <button onClick={runSpeechRecognition}>Speech to Text</button>
+          &nbsp;
+          <span >{note}</span>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
