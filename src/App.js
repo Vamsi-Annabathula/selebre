@@ -3,7 +3,7 @@ import './App.css';
 
 function App() {
   const defaultMantra = "Blow the candles"
-  const [mantra, setMantra] = useState(defaultMantra)
+  const [mantra, setMantra] = useState()
   const [note, setNote] = useState()
 
   const runSpeechRecognition = () => {
@@ -36,7 +36,7 @@ function App() {
       <header className="App-header">
         The Mantra is <h4 >-- {mantra}</h4>
         <p>
-          <button onClick={runSpeechRecognition}>Speech to Text</button>
+          <button onClick={runSpeechRecognition}>Click to say matra</button>
           &nbsp;
           <span >{note}</span>
         </p>
