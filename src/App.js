@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-  const defaultMantra = "Blow the candles"
+  //const defaultMantra = "Blow the candles"
   const [mantra, setMantra] = useState()
   const [note, setNote] = useState()
 
