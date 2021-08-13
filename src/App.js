@@ -1,48 +1,27 @@
-import { useState } from 'react';
+import { useState, React } from 'react';
 import './App.css';
+import { Route, BrowserRouter as Router, Redirect } from "react-router-dom";
+import RecordMantra from './components/recordMantra';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
+import Dashboard from './components/layout/dashboard'
 
 function App() {
-  //const defaultMantra = "Blow the candles"
-  const [mantra, setMantra] = useState()
-  const [note, setNote] = useState()
-
-  const runSpeechRecognition = () => {
-    let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    let recognition = new SpeechRecognition();
-
-    // This runs when the speech recognition service starts
-    recognition.onstart = function () {
-      setNote("Say the mantra")
-      //action.innerHTML = "<small>listening, please speak...</small>";
-    };
-
-    recognition.onspeechend = function () {
-      setNote("Mantra recorded")
-      recognition.stop();
-    }
-
-    // This runs when the speech recognition service returns result
-    recognition.onresult = function (event) {
-      let transcript = event.results[0][0].transcript;
-      setMantra(transcript)
-    };
-
-    // start recognition
-    recognition.start();
-  }
-
+  const [toggle, setToggle] = useState(false)
   return (
     <div className="App">
-      <header className="App-header">
-        The Mantra is <h4 >-- {mantra}</h4>
-        <p>
-          <button onClick={runSpeechRecognition}>Click to say matra</button>
-          &nbsp;
-          <span >{note}</span>
-        </p>
-      </header>
-    </div>
-  );
+      <Router>
+        {/* toggle ?
+          <Container maxWidth="sm">
+            <RecordMantra />
+          </Container>
+          :
+          <button onClick={() => { setToggle(!toggle) }}> clck </button> */}
+        <Dashboard />
+      </Router>
+    </div >
+  )
 }
 
 export default App;
