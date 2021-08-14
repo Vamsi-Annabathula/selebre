@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { Comment } from './comment';
+import Comment from './comment';
 
 const reducers = () => combineReducers(
     {

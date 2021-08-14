@@ -5,11 +5,11 @@ import {
 } from '../actions/comment'
 
 const initialState = {
-    comments =[],
-    loading = false,
-    error = false,
-    commentsAvailable = false,
-    errorInfo = ""
+    comments: [],
+    loading: false,
+    error: false,
+    commentsAvailable: false,
+    errorInfo: ""
 }
 
 const Comment = (state = initialState, action) => {
@@ -23,17 +23,17 @@ const Comment = (state = initialState, action) => {
             if (action.payload.comments.length == 0) {
                 return {
                     ...state,
-                    comments = state.comments,
-                    commentsAvailable = false,
-                    loading = false
+                    comments: state.comments,
+                    commentsAvailable: false,
+                    loading: false
                 }
             }
             else
                 return {
                     ...state,
-                    comments =[...state.comments, ...action.payload.comments],
-                    commentsAvailable = true,
-                    loading = fasle
+                    comments: [...state.comments, ...action.payload.comments],
+                    commentsAvailable: true,
+                    loading: false
                 }
         case FETCH_ALL_COMMENTS_ERROR:
             return {
