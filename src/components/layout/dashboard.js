@@ -21,6 +21,7 @@ import RecordMantra from '../recordMantra';
 import CommentForm from '../comments/commentForm';
 import styles from './dashboardStyle'
 import Celebrate from '../celebration';
+import DisplayComments from '../comments/displayComments';
 
 
 
@@ -86,7 +87,7 @@ export default function Dashboard() {
             <Grid item xs={4} md={4} lg={4}>
             </Grid>
             <Grid item xs={4} md={4} lg={4} className={classes.components}>
-              <Route path="/dashBoard/mantra" component={() =>
+              <Route path="/addMantra" component={() =>
                 <RecordMantra
                   initialButtonText={"Record"}
                   displayText={"The Mantra is"}
@@ -95,7 +96,8 @@ export default function Dashboard() {
                   blowCandles={() => {}}
                 />
               } />
-              <Route path="/dashboard/addComment" component={CommentForm} />
+              
+              <Route path="/addWish" component={CommentForm} />
             </Grid>
           </Grid>
         </Container>

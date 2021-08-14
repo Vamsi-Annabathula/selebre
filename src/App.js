@@ -32,17 +32,11 @@ function App() {
             </Typography>
           </Toolbar>
         </AppBar>
-        {/* toggle ?
-          <Container maxWidth="sm">
-            <RecordMantra />
-          </Container>
-          :
-          <button onClick={() => { setToggle(!toggle) }}> clck </button> */}
         <Route path="/signUp" component={SignUp} />
         <Route path="/logIn" component={Login} />
-        <Route path="/celebrate" component={Celebrate} />
+        <Route exact path={["/dashBoard", "/", "/addMantra", "/addWish"]} component={Dashboard} />
         <Route path="/wishes" component={DisplayComments} />
-        <Route path="/dashBoard" component={Dashboard} />
+        <Route path="/celebrate" component={Celebrate} />
       </Grid >
     </Router>
   )

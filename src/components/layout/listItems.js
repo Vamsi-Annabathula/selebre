@@ -7,6 +7,8 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import CakeIcon from '@material-ui/icons/Cake';
+import AcUnitIcon from '@material-ui/icons/AcUnit';
 import './listItems.css'
 
 export const mainListItems = (
@@ -17,7 +19,7 @@ export const mainListItems = (
             </ListItemIcon>
             <ListItemText primary="Employees" />
         </ListItem>
-        <Link to="/dashBoard/mantra" className="menu">
+        <Link to="/addMantra" className="menu">
             <ListItem button>
                 <ListItemIcon>
                     <BarChartIcon />
@@ -25,33 +27,56 @@ export const mainListItems = (
                 <ListItemText primary="Mantra" />
             </ListItem>
         </Link>
+        <Link to="/celebrate" className="menu">
+            <ListItem button>
+                <ListItemIcon>
+                    <CakeIcon />
+                </ListItemIcon>
+                <ListItemText primary="Celebrate" />
+            </ListItem>
+        </Link>
+        <Link to="/wishes" className="menu">
+            <ListItem button>
+                <ListItemIcon>
+                    <AcUnitIcon />
+                </ListItemIcon>
+                <ListItemText primary="Wishes" />
+            </ListItem>
+        </Link>
+        <Link to="/addWish" className="menu">
+            <ListItem button>
+                <ListItemIcon>
+                    <AssignmentIcon />
+                </ListItemIcon>
+                <ListItemText primary="Add Wish" />
+            </ListItem>
+        </Link>
     </div>
 );
 
 export const secondaryListItems = (
     <div>
-        <ListSubheader inset>pages other link (Temp)</ListSubheader>
-        <Link to="/dashboard/addComment" className="menu">
+        <Link to="/signUp" className="menu">
             <ListItem button>
                 <ListItemIcon>
                     <AssignmentIcon />
                 </ListItemIcon>
-                <ListItemText primary="Add Comment" />
+                <ListItemText primary="Sign Up" />
             </ListItem>
-        </Link>
-        <Link to="/celebrate" className="menu">
+        </Link> 
+        <Link to="/logIn" className="menu">
             <ListItem button>
                 <ListItemIcon>
                     <AssignmentIcon />
                 </ListItemIcon>
-                <ListItemText primary="Celebrate" />
+                <ListItemText primary="Log In" />
             </ListItem>
-        </Link>
+        </Link> 
         {/* <ListItem button>
             <ListItemIcon>
                 <AssignmentIcon />
             </ListItemIcon>
             <ListItemText primary="Year-end sale" />
-        </ListItem> */}
+        </ListItem>*/}
     </div>
 );

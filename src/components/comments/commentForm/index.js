@@ -35,7 +35,7 @@ export default function CommentForm() {
           <CommentIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Comment
+          Add Wish
         </Typography>
         <form method = "post" className={classes.form} onSubmit = {onSubmitHandler}>
           <Grid container spacing={2}>
