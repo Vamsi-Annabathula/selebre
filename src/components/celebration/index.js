@@ -12,34 +12,32 @@ import './style.css';
 import styles from './style';
 import RecordMantra from '../recordMantra';
 import { fetchRecordedMantra, fetchPostedMantra } from '../../actions/mantra';
-import {ADMINID} from '../../utils'
+import { ADMINID } from '../../utils'
 
 const useStyles = makeStyles(styles);
 export default function Celebrate() {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [mantra, setMantra] = useState()
-    const [blowCandle, setBlowCandle] = useState(false)
+    const [flame, setFlame] = useState("flame")
     const [note, setNote] = useState("Spell");
     const [checkSpell, setCheckSpell] = useState();
 
-    var flame = "flame";
+    const defaultMantra = useSelector(state => state.mantra?.mantra);
 
     useEffect(() => {
-        dispatch(fetchPostedMantra(ADMINID))
+        if (defaultMantra != null)
+            dispatch(fetchPostedMantra(ADMINID))
     }, []);
+
 
     useEffect(() => {
         if (checkSpell === defaultMantra) {
-            flame = "";
+            setFlame("");
         }
     }, [checkSpell])
 
-    const defaultMantra = useSelector(state => state.mantra?.mantra);
 
-    function blowCandles() {
-        setBlowCandle(true)
-    }
     const runSpeechRecognition = () => {
         let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         let recognition = new SpeechRecognition();
@@ -58,7 +56,7 @@ export default function Celebrate() {
         // This runs when the speech recognition service returns result
         recognition.onresult = function (event) {
             let transcript = event.results[0][0].transcript;
-            setMantra(transcript);
+            setMantra(transcript)
             setCheckSpell(transcript)
         };
 
@@ -72,7 +70,7 @@ export default function Celebrate() {
             <Grid item className={classes.celebMantraText}>
 
                 <Typography component="h1" variant="h6" color="inherit" noWrap >
-                    Say this mantra to blow the candle -- {defaultMantra}
+                    Say this mantra to blow the candle -- "{defaultMantra}"
                 </Typography>
             </Grid>
             <Grid item className={classes.recordMantra} >
@@ -92,7 +90,7 @@ export default function Celebrate() {
                         </Button>
                     </Grid>
                     <Grid item className={classes.mantraText}>
-                        {(<h4 > "You spelled"- {mantra}</h4>)}
+                        You spelled - {mantra}
                     </Grid>
                 </Grid>
             </Grid>

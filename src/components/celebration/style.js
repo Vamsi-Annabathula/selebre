@@ -6,6 +6,9 @@ export default (theme) => ({
     recordMantra: {
         position: 'absolute',
         top: '30%',
-        marginTop: '40px'
+        marginTop: '50px'
+    },
+    mantraText:{
+        marginTop: '10px'
     }
 })

@@ -23,7 +23,6 @@ const Mantra = (state = initialState, action) => {
                 loading: true
             }
         case FETCH_MANTRA_SUCCESS:
-            console.log(action.payload)
             return {
                 ...state,
                 mantra: action.payload.mantra,
