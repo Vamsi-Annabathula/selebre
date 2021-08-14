@@ -8,7 +8,15 @@ export default (theme) => ({
         top: '30%',
         marginTop: '50px'
     },
-    mantraText:{
+    mantraText: {
         marginTop: '10px'
+    },
+    cakeGif: {
+        borderRadius: '56%',
+        width: '450px',
+        top: '23%',
+        left: '46%',
+        position: 'absolute',
+        height: '400px',
     }
 })

@@ -1,3 +1,3 @@
 
 export const ADMINID = 2
-export const URL = 'http://localhost:35304/api'
+export const URL = 'https://selebre-backend20210815015350.azurewebsites.net/api'

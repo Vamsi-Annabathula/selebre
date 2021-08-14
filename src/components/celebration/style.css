@@ -3,7 +3,7 @@
   width: 250px;
   height: 200px;
   top: 50%;
-  left: 60%;
+  left: 50%;
   margin-top: -70px;
   margin-left: -125px;
 }
@@ -139,6 +139,20 @@
     0 0 60px rgba(orange, 0.5), 0 0 80px rgba(orange, 0.5);
   transform-origin: 50% 90%;
   animation: flicker 1s ease-in-out alternate infinite;
+}
+.off {
+  position: absolute;
+  background-color: rgb(71, 71, 71);
+  width: 5px;
+  height: 30px;
+  border-radius: 10px 10px 10px 10px / 25px 25px 10px 10px;
+  top: -28px;
+  left: 80%;
+  margin-left: -7.5px;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(rgb(119, 118, 116), 0.5), 0 0 20px rgba(rgb(129, 129, 129), 0.5),
+    0 0 60px rgba(rgb(114, 114, 114), 0.5), 0 0 80px rgba(rgb(119, 119, 118), 0.5);
+  transform-origin: 50% 90%;
 }
 
 @keyframes flicker {

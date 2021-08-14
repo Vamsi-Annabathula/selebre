@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from 'react';
+import { React, useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,7 +12,8 @@ import './style.css';
 import styles from './style';
 import RecordMantra from '../recordMantra';
 import { fetchRecordedMantra, fetchPostedMantra } from '../../actions/mantra';
-import { ADMINID } from '../../utils'
+import { ADMINID } from '../../utils';
+import bdySong from '../../assests/music/bdy.mp3';
 
 const useStyles = makeStyles(styles);
 export default function Celebrate() {
@@ -22,6 +23,8 @@ export default function Celebrate() {
     const [flame, setFlame] = useState("flame")
     const [note, setNote] = useState("Spell");
     const [checkSpell, setCheckSpell] = useState();
+    const [playGif, setPlayGif] = useState(false);
+    const audioRef = useRef();
 
     const defaultMantra = useSelector(state => state.mantra?.mantra);
 
@@ -30,10 +33,13 @@ export default function Celebrate() {
             dispatch(fetchPostedMantra(ADMINID))
     }, []);
 
-
     useEffect(() => {
         if (checkSpell === defaultMantra) {
-            setFlame("");
+            setFlame("off");
+            audioRef.current.play()
+            setTimeout(() => {
+                setPlayGif(true)
+            }, 6000);
         }
     }, [checkSpell])
 
@@ -68,21 +74,12 @@ export default function Celebrate() {
         <Grid component="main" maxWidth="xs" direction='row'>
             <CssBaseline />
             <Grid item className={classes.celebMantraText}>
-
+                <audio ref={audioRef} src={bdySong}></audio>
                 <Typography component="h1" variant="h6" color="inherit" noWrap >
                     Say this mantra to blow the candle -- "{defaultMantra}"
                 </Typography>
             </Grid>
             <Grid item className={classes.recordMantra} >
-                {/* <RecordMantra
-                    initialButtonText={"Spell"}
-                    displayText={"You Spelled"}
-                    onSayButtonText={"Spell"}
-                    onStopButtonText={"Spelled"}
-                    isCeleb
-                    blowCandles={blowCandles}
-                /> */}
-
                 <Grid className={classes.mantraHeader}>
                     <Grid item>
                         <Button variant="contained" color="primary" onClick={runSpeechRecognition}>
@@ -94,21 +91,29 @@ export default function Celebrate() {
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid item>
-                <div className="cake">
-                    <div className="plate"></div>
-                    <div className="layer layer-bottom"></div>
-                    <div className="layer layer-middle"></div>
-                    <div className="layer layer-top"></div>
-                    <div className="icing"></div>
-                    <div className="drip drip1"></div>
-                    <div className="drip drip2"></div>
-                    <div className="drip drip3"></div>
-                    <div className="candle">
-                        <div className={flame}> </div>
+            {!playGif ? (
+                <Grid item>
+                    <div className="cake">
+                        <div className="plate"></div>
+                        <div className="layer layer-bottom"></div>
+                        <div className="layer layer-middle"></div>
+                        <div className="layer layer-top"></div>
+                        <div className="icing"></div>
+                        <div className="drip drip1"></div>
+                        <div className="drip drip2"></div>
+                        <div className="drip drip3"></div>
+                        <div className="candle">
+                            <div className={flame}> </div>
+                        </div>
                     </div>
-                </div>
-            </Grid>
+                </Grid>
+            ) :
+                <Grid item>
+                    <img src="https://i.gifer.com/9FMN.gif" className={classes.cakeGif} />
+                </Grid>
+            }
+
+
         </Grid >
     );
 }
