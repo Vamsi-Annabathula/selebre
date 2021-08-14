@@ -1,9 +1,9 @@
 import { React, useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-    Container,
     Grid,
     Button,
     Typography
@@ -24,6 +24,7 @@ export default function Celebrate() {
     const [note, setNote] = useState("Spell");
     const [checkSpell, setCheckSpell] = useState();
     const [playGif, setPlayGif] = useState(false);
+    const [redirect, setRedirect] = useState(false);
     const audioRef = useRef();
 
     const defaultMantra = useSelector(state => state.mantra?.mantra);
@@ -40,6 +41,9 @@ export default function Celebrate() {
             setTimeout(() => {
                 setPlayGif(true)
             }, 6000);
+            setTimeout(() => {
+                setRedirect(true)
+            }, 18000)
         }
     }, [checkSpell])
 
@@ -79,6 +83,7 @@ export default function Celebrate() {
                     Say this mantra to blow the candle -- "{defaultMantra}"
                 </Typography>
             </Grid>
+
             <Grid item className={classes.recordMantra} >
                 <Grid className={classes.mantraHeader}>
                     <Grid item>
@@ -112,8 +117,12 @@ export default function Celebrate() {
                     <img src="https://i.gifer.com/9FMN.gif" className={classes.cakeGif} />
                 </Grid>
             }
-
-
+            {
+                redirect ?
+                    <Redirect to='/wishes' />
+                    :
+                    null
+            }
         </Grid >
     );
 }
