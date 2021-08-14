@@ -12,6 +12,7 @@ import './style.css';
 import styles from './style';
 import RecordMantra from '../recordMantra';
 import { fetchRecordedMantra, fetchPostedMantra } from '../../actions/mantra';
+import {ADMINID} from '../../utils'
 
 const useStyles = makeStyles(styles);
 export default function Celebrate() {
@@ -22,11 +23,10 @@ export default function Celebrate() {
     const [note, setNote] = useState("Spell");
     const [checkSpell, setCheckSpell] = useState();
 
-
     var flame = "flame";
 
     useEffect(() => {
-        dispatch(fetchRecordedMantra())
+        dispatch(fetchPostedMantra(ADMINID))
     }, []);
 
     useEffect(() => {
@@ -65,14 +65,14 @@ export default function Celebrate() {
         // start recognition
         recognition.start();
     }
-    
+
     return (
         <Grid component="main" maxWidth="xs" direction='row'>
             <CssBaseline />
             <Grid item className={classes.celebMantraText}>
 
                 <Typography component="h1" variant="h6" color="inherit" noWrap >
-                    Say this mantra to blow the candle -- {mantra} "Aabra Ka Daabra"
+                    Say this mantra to blow the candle -- {defaultMantra}
                 </Typography>
             </Grid>
             <Grid item className={classes.recordMantra} >

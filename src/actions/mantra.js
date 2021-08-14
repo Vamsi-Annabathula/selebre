@@ -1,4 +1,6 @@
 
+import { URL } from '../utils';
+
 export const FETCH_MANTRA_BEGIN = "FETCH_MANTRA_BEGIN";
 export const FETCH_MANTRA_SUCCESS = "FETCH_MANTRA_SUCCESS";
 export const FETCH_MANTRA_ERROR = "FETCH_MANTRA_ERROR";
@@ -46,7 +48,7 @@ export const postMantraError = (error) => (
 export const postMantra = (mantra) => {
     return async (dispatch) => {
         try {
-            const url = `http://localhost:35304/api/admin/addMantra`;
+            const url = `${URL}/admin/addMantra`;
             const response = await fetch(url, {
                 method: 'post',
                 headers: new Headers({ 'content-type': 'application/json' }),
@@ -68,15 +70,18 @@ export const saveMantra = (mantra) => {
     }
 }
 
-export const fetchPostedMantra = () => {
+export const fetchPostedMantra = (id) => {
     return async (dispatch) => {
         try {
             dispatch(fetchMantraBegin());
-            const url = `dummy URl`;
-            const response = await fetch(url);
-            const res = await handleErrors(response);
-            const json = await res.json();
-            dispatch(fetchMantraSuccess(json));
+            const url = `${URL}/User/${id}/getMantra`;
+            fetch(url).then(res => {
+                console.log(res)
+                res.json()
+            }).then(data => {
+                console.log(data)
+                dispatch(fetchMantraSuccess(data));
+            })
         }
         catch (error) {
             return dispatch(fetchMantraError(error));

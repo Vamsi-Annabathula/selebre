@@ -23,22 +23,13 @@ const Mantra = (state = initialState, action) => {
                 loading: true
             }
         case FETCH_MANTRA_SUCCESS:
-            debugger;
-            if (action.payload.mantra.length == 0) {
-                return {
-                    ...state,
-                    mantra: state.mantra,
-                    mantraAvailable: false,
-                    loading: false
-                }
+            console.log(action.payload)
+            return {
+                ...state,
+                mantra: action.payload.mantra,
+                mantraAvailable: true,
+                loading: false
             }
-            else
-                return {
-                    ...state,
-                    mantra: action.payload.mantra,
-                    mantraAvailable: true,
-                    loading: false
-                }
         case FETCH_MANTRA_ERROR:
             return {
                 ...state,

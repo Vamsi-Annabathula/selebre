@@ -1,10 +1,7 @@
 import { useState, React } from 'react';
-import { useStore } from 'react-redux';
+import { useSelector, useStore } from 'react-redux';
 import { Route, BrowserRouter as Router, Redirect } from "react-router-dom";
-import RecordMantra from './components/recordMantra';
-import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
 import Dashboard from './components/layout/dashboard'
 import SignUp from './components/auth/signUp';
 import Box from '@material-ui/core/Box';
@@ -24,6 +21,8 @@ const useStyles = makeStyles(styles);
 
 function App() {
 
+  const state = useStore().getState();
+  console.log(state)
   const classes = useStyles();
   return (
     <Router>
