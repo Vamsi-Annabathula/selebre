@@ -21,8 +21,6 @@ const useStyles = makeStyles(styles);
 
 function App() {
 
-  const state = useStore().getState();
-  console.log(state)
   const classes = useStyles();
   return (
     <Router>

@@ -31,8 +31,6 @@ function RecordMantra(props) {
     const recordingError = useSelector(state => state.mantra?.errorInfo);
     const defaultMantra = useSelector(state => state.mantra?.mantra);
 
-    console.log(defaultMantra, isMantraRecorded)
-
     useEffect(() => {
         if (checkSpell === defaultMantra) {
             blowCandles()

@@ -76,11 +76,9 @@ export const fetchPostedMantra = (id) => {
             dispatch(fetchMantraBegin());
             const url = `${URL}/User/${id}/getMantra`;
             fetch(url).then(res => {
-                console.log(res)
-                res.json()
+                return res.json()
             }).then(data => {
-                console.log(data)
-                dispatch(fetchMantraSuccess(data));
+                dispatch(fetchMantraSuccess(data?.mantra));
             })
         }
         catch (error) {
