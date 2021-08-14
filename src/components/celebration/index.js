@@ -26,7 +26,7 @@ export default function Celebrate() {
     var flame = "flame";
 
     useEffect(() => {
-        dispatch(fetchPostedMantra(ADMINID))
+        dispatch(fetchPostedMantra(ADMINID));
     }, []);
 
     useEffect(() => {
@@ -92,7 +92,7 @@ export default function Celebrate() {
                         </Button>
                     </Grid>
                     <Grid item className={classes.mantraText}>
-                        {(<h4 > "You spelled"- {mantra}</h4>)}
+                        {(<h4 > You spelled- {mantra}</h4>)}
                     </Grid>
                 </Grid>
             </Grid>

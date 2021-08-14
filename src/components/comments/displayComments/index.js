@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
@@ -14,14 +15,22 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import styles from './style'
+import { ADMINID } from '../../../utils';
+import { fetchAllComments } from '../../../actions/comment';
 
 const useStyles = makeStyles(styles);
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 export default function DisplayComments() {
     const classes = useStyles();
+    const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(fetchAllComments(3));
+    }, []);
+
+    const comments = useSelector(state => state.comment?.comments);
+    console.log(comments);
+    var key = 1;
     return (
         <React.Fragment>
             <CssBaseline />
@@ -39,9 +48,10 @@ export default function DisplayComments() {
                 </div>
                 <Container className={classes.cardGrid} maxWidth="md">
                     {/* End hero unit */}
+                    {comments == null ? <h3>If You Receive Any Comments They Will Display Here</h3>: ''}
                     <Grid container spacing={4}>
-                        {cards.map((card) => (
-                            <Grid item key={card} xs={12} sm={6} md={4}>
+                        {comments?.map((comment) => (
+                            <Grid item key = {key++} xs={12} sm={6} md={4}>
                                 <Card className={classes.card}>
                                     <CardMedia
                                         className={classes.cardMedia}
@@ -50,20 +60,20 @@ export default function DisplayComments() {
                                     />
                                     <CardContent className={classes.cardContent}>
                                         <Typography gutterBottom variant="h5" component="h2">
-                                            Heading
+                                            By: {comment.commentorName}
                                         </Typography>
                                         <Typography>
-                                            This is a media card. You can use this section to describe the content.
+                                            {comment.comments}
                                         </Typography>
                                     </CardContent>
-                                    <CardActions>
+                                    {/* <CardActions>
                                         <Button size="small" color="primary">
                                             View
                                         </Button>
                                         <Button size="small" color="primary">
                                             Edit
                                         </Button>
-                                    </CardActions>
+                                    </CardActions> */}
                                 </Card>
                             </Grid>
                         ))}
