@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
@@ -16,14 +16,26 @@ const useStyles = makeStyles(styles);
 export default function Celebrate() {
     const classes = useStyles();
     const dispatch = useDispatch();
-    dispatch(fetchRecordedMantra());
+    const [blowCandle, setBlowCandle] = useState(false)
+
+    const flame = () => blowCandle ? "" : "flame"
+
+    console.log("Asda", flame(), blowCandle)
+    useEffect(() => {
+        dispatch(fetchRecordedMantra())
+    }, []);
+
     const mantra = useSelector(state => state.mantra?.mantra);
-    
+
+    function blowCandles() {
+        setBlowCandle(true)
+    }
+
     return (
         <Grid component="main" maxWidth="xs" direction='row'>
             <CssBaseline />
             <Grid item className={classes.celebMantraText}>
-                
+
                 <Typography component="h1" variant="h6" color="inherit" noWrap >
                     Say this mantra to blow the candle -- {mantra} "Aabra Ka Daabra"
                 </Typography>
@@ -32,9 +44,10 @@ export default function Celebrate() {
                 <RecordMantra
                     initialButtonText={"Spell"}
                     displayText={"You Spelled"}
-                    onSayButtonText = {"Spell"}
-                    onStopButtonText = {"Spelled"}
+                    onSayButtonText={"Spell"}
+                    onStopButtonText={"Spelled"}
                     isCeleb
+                    blowCandles={blowCandles}
                 />
             </Grid>
             <Grid item>
@@ -48,10 +61,10 @@ export default function Celebrate() {
                     <div className="drip drip2"></div>
                     <div className="drip drip3"></div>
                     <div className="candle">
-                        <div className="flame"></div>
+                        <div className={flame()}> </div>
                     </div>
                 </div>
             </Grid>
-        </Grid>
+        </Grid >
     );
 }

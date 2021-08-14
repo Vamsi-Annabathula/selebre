@@ -92,6 +92,7 @@ export default function Dashboard() {
                   displayText={"The Mantra is"}
                   onSayButtonText={"Spell"}
                   onStopButtonText={"Spelled"}
+                  blowCandles={() => {}}
                 />
               } />
               <Route path="/dashboard/addComment" component={CommentForm} />

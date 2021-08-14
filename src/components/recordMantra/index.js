@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './style.js'
 import { makeStyles } from '@material-ui/core/styles';
@@ -16,18 +16,28 @@ function RecordMantra(props) {
         onSayButtonText,
         onStopButtonText,
         displayText,
-        isCeleb
+        isCeleb,
+        blowCandles
     } = props;
     //const defaultMantra = "Blow the candles"
     const [mantra, setMantra] = useState()
     const classes = useStyles();
     const [note, setNote] = useState(initialButtonText);
+    const [checkSpell, setCheckSpell] = useState();
     const dispatch = useDispatch();
 
+    const isMantraRecordingFailed = useSelector(state => state.mantra?.error);
+    const isMantraRecorded = useSelector(state => state.mantra?.isMantraRecorded);
+    const recordingError = useSelector(state => state.mantra?.errorInfo);
+    const defaultMantra = useSelector(state => state.mantra?.mantra);
 
-    const isMantraRecordingFailed = useSelector(state => state.Mantra?.error);
-    const isMantraRecorded = useSelector(state => state.Mantra?.isMantraRecorded);
-    const recordingError = useSelector(state => state.Mantra?.errorInfo);
+    console.log(props)
+
+    useEffect(() => {
+        if (checkSpell === defaultMantra) {
+            blowCandles()
+        }
+    }, [checkSpell])
 
     const runSpeechRecognition = () => {
         let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -48,14 +58,20 @@ function RecordMantra(props) {
         recognition.onresult = function (event) {
             let transcript = event.results[0][0].transcript;
             setMantra(transcript);
-            debugger;
-            // if (isCeleb) dispatch(saveMantra(transcript));
+            if (isCeleb) setCheckSpell(transcript)
         };
 
         // start recognition
         recognition.start();
     }
 
+    const submitMantra = (mantra) => {
+        const res = {
+            'userId': 2,
+            "mantra": mantra
+        }
+        dispatch(postMantra(res))
+    }
     return (
         <Grid className={classes.mantraHeader}>
             <Grid item>
@@ -68,16 +84,16 @@ function RecordMantra(props) {
             </Grid>
             {!isCeleb && (
                 <Grid item>
-                    <Button variant="contained" color="primary" onClick = {() => dispatch(postMantra(mantra))} >
+                    <Button variant="contained" color="primary" onClick={() => submitMantra(mantra)} >
                         Save the Mantra
                     </Button>
                     <br></br>
-                    { isMantraRecordingFailed ? "There was an error saving the mantra, please try again."
-                    : isMantraRecorded ? "Mantra recorded successfully" : "" }
+                    {isMantraRecordingFailed ? "There was an error saving the mantra, please try again."
+                        : isMantraRecorded ? "Mantra recorded successfully" : ""}
                     {recordingError}
                 </Grid>
             )}
-            
+
         </Grid>
     );
 }

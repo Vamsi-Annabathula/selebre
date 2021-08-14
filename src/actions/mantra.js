@@ -46,7 +46,7 @@ export const postMantraError = (error) => (
 export const postMantra = (mantra) => {
     return async (dispatch) => {
         try {
-            const url = `dummy URl`;
+            const url = `http://localhost:35304/api/admin/addMantra`;
             const response = await fetch(url, {
                 method: 'post',
                 headers: new Headers({ 'content-type': 'application/json' }),
