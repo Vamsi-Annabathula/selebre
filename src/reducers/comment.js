@@ -2,7 +2,7 @@ import {
     FETCH_ALL_COMMENTS_BEGIN,
     FETCH_ALL_COMMENTS_SUCCESS,
     FETCH_ALL_COMMENTS_ERROR
-} from '../actions/comment'
+} from '../actions/comment';
 
 const initialState = {
     comments: [],

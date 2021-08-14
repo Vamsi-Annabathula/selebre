@@ -31,7 +31,7 @@ export const mainListItems = (
 export const secondaryListItems = (
     <div>
         <ListSubheader inset>pages other link (Temp)</ListSubheader>
-        <Link to="/addComment" className="menu">
+        <Link to="/dashboard/addComment" className="menu">
             <ListItem button>
                 <ListItemIcon>
                     <AssignmentIcon />

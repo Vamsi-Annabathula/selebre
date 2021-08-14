@@ -94,7 +94,7 @@ export default function Dashboard() {
                   onStopButtonText={"Spelled"}
                 />
               } />
-              <Route path="/addComment" component={CommentForm} />
+              <Route path="/dashboard/addComment" component={CommentForm} />
             </Grid>
           </Grid>
         </Container>
