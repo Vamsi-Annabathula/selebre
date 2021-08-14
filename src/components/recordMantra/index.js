@@ -8,11 +8,18 @@ import {
 
 const useStyles = makeStyles(styles);
 
-function RecordMantra() {
+function RecordMantra(props) {
+    const {
+        initialButtonText,
+        onSayButtonText,
+        onStopButtonText,
+        displayText,
+        isCeleb
+    } = props;
     //const defaultMantra = "Blow the candles"
     const [mantra, setMantra] = useState()
     const classes = useStyles();
-    const [note, setNote] = useState("Record Mantra")
+    const [note, setNote] = useState(initialButtonText)
 
     const runSpeechRecognition = () => {
         let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -20,12 +27,12 @@ function RecordMantra() {
 
         // This runs when the speech recognition service starts
         recognition.onstart = function () {
-            setNote("Say the mantra")
+            setNote(onSayButtonText)
             //action.innerHTML = "<small>listening, please speak...</small>";
         };
 
         recognition.onspeechend = function () {
-            setNote("Record Mantra")
+            setNote(onStopButtonText)
             recognition.stop();
         }
 
@@ -40,20 +47,23 @@ function RecordMantra() {
     }
 
     return (
-        <Grid className={classes.mantraHeader} direction='column'>
+        <Grid className={classes.mantraHeader}>
             <Grid item>
                 <Button variant="contained" color="primary" onClick={runSpeechRecognition}>
                     {note}
                 </Button>
             </Grid>
             <Grid item className={classes.mantraText}>
-                The Mantra is <h4 >-- {mantra}</h4>
+                {(<h4 >{displayText} -{mantra}</h4>)}
             </Grid>
-            <Grid item>
-                <Button variant="contained" color="primary" >
-                    Save the Mantra
-                </Button>
-            </Grid>
+            {!isCeleb && (
+                <Grid item>
+                    <Button variant="contained" color="primary" >
+                        Save the Mantra
+                    </Button>
+                </Grid>
+            )}
+
         </Grid>
     );
 }

@@ -22,18 +22,6 @@ import CommentForm from '../comments/commentForm';
 import styles from './dashboardStyle'
 import Celebrate from '../celebration';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="/">
-        Selebre
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 
 
@@ -98,14 +86,17 @@ export default function Dashboard() {
             <Grid item xs={4} md={4} lg={4}>
             </Grid>
             <Grid item xs={4} md={4} lg={4} className={classes.components}>
-              <Route path="/mantra" component={RecordMantra} />
+              <Route path="/dashBoard/mantra" component={() =>
+                <RecordMantra
+                  initialButtonText={"Record"}
+                  displayText={"The Mantra is"}
+                  onSayButtonText={"Spell"}
+                  onStopButtonText={"Spelled"}
+                />
+              } />
               <Route path="/addComment" component={CommentForm} />
-              <Route path="/celebrate" component={Celebrate} />
             </Grid>
           </Grid>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
         </Container>
       </main>
     </div>

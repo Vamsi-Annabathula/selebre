@@ -17,7 +17,7 @@ export const mainListItems = (
             </ListItemIcon>
             <ListItemText primary="Employees" />
         </ListItem>
-        <Link to="/mantra" className="menu">
+        <Link to="/dashBoard/mantra" className="menu">
             <ListItem button>
                 <ListItemIcon>
                     <BarChartIcon />
