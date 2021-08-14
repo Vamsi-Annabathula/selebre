@@ -1,7 +1,9 @@
 import {
     FETCH_ALL_COMMENTS_BEGIN,
     FETCH_ALL_COMMENTS_SUCCESS,
-    FETCH_ALL_COMMENTS_ERROR
+    FETCH_ALL_COMMENTS_ERROR,
+    POST_COMMENT_ERROR,
+    POST_COMMENT_SUCCESS
 } from '../actions/comment';
 
 const initialState = {
@@ -9,6 +11,7 @@ const initialState = {
     loading: false,
     error: false,
     commentsAvailable: false,
+    isCommentPosted: false,
     errorInfo: ""
 }
 
@@ -29,12 +32,16 @@ const Comment = (state = initialState, action) => {
                 }
             }
             else
+            {
+                console.log(action.payload);
                 return {
                     ...state,
                     comments: [...state.comments, ...action.payload.comments],
                     commentsAvailable: true,
                     loading: false
                 }
+            }
+                
         case FETCH_ALL_COMMENTS_ERROR:
             return {
                 ...state,
@@ -43,6 +50,22 @@ const Comment = (state = initialState, action) => {
                 error: true,
                 AdsAvailable: false
             }
+
+        case POST_COMMENT_SUCCESS:
+            return {
+                ...state,
+                error: false,
+                isCommentPosted: true,
+                loading: false
+            }
+        case POST_COMMENT_ERROR:
+        return {
+            ...state,
+            loading: false,
+            error: true,
+            errorInfo: action.payload.error,
+            isCommentPosted: false
+        }
         default:
             return state;
     }
