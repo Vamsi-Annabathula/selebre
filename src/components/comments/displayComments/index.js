@@ -39,7 +39,7 @@ export default function DisplayComments() {
                 <div className={classes.heroContent}>
                     <Container maxWidth="sm">
                         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            Happy Birthday Wishes
+                            Happy Birthday Wishes 🥳
                         </Typography>
                         <Typography variant="h5" align="center" color="textSecondary" paragraph>
                             Here are the birthday Wishes for you from your Team mates

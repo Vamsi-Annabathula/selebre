@@ -31,17 +31,16 @@ const Comment = (state = initialState, action) => {
                     loading: false
                 }
             }
-            else
-            {
+            else {
                 console.log(action.payload);
                 return {
                     ...state,
-                    comments: [...state.comments, ...action.payload.comments],
+                    comments: action.payload.comments,
                     commentsAvailable: true,
                     loading: false
                 }
             }
-                
+
         case FETCH_ALL_COMMENTS_ERROR:
             return {
                 ...state,
@@ -59,13 +58,13 @@ const Comment = (state = initialState, action) => {
                 loading: false
             }
         case POST_COMMENT_ERROR:
-        return {
-            ...state,
-            loading: false,
-            error: true,
-            errorInfo: action.payload.error,
-            isCommentPosted: false
-        }
+            return {
+                ...state,
+                loading: false,
+                error: true,
+                errorInfo: action.payload.error,
+                isCommentPosted: false
+            }
         default:
             return state;
     }
