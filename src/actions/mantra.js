@@ -53,8 +53,8 @@ export const postMantra = (mantra) => {
                 body: JSON.stringify(mantra)
             });
             const res = await handleErrors(response);
-            const json = await res.json();
-            dispatch(postMantraSuccess(json));
+            //const json = await res.json();
+            dispatch(postMantraSuccess(res));
         }
         catch (error) {
             return dispatch(postMantraError(error));

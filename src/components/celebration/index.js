@@ -28,6 +28,7 @@ export default function Celebrate() {
     useEffect(() => {
         dispatch(fetchRecordedMantra())
     }, []);
+
     useEffect(() => {
         if (checkSpell === defaultMantra) {
             flame = "";
@@ -64,6 +65,7 @@ export default function Celebrate() {
         // start recognition
         recognition.start();
     }
+    
     return (
         <Grid component="main" maxWidth="xs" direction='row'>
             <CssBaseline />

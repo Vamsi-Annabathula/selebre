@@ -1,4 +1,5 @@
 import { useState, React } from 'react';
+import { useStore } from 'react-redux';
 import { Route, BrowserRouter as Router, Redirect } from "react-router-dom";
 import RecordMantra from './components/recordMantra';
 import Container from '@material-ui/core/Container';
@@ -40,11 +41,11 @@ function App() {
           </Container>
           :
           <button onClick={() => { setToggle(!toggle) }}> clck </button> */}
-          <Route path="/signUp" component={SignUp} />
-          <Route path="/logIn" component={Login} />
-          <Route path="/celebrate" component={Celebrate} />
-          <Route path="/wishes" component={DisplayComments} />
-          <Route path="/dashBoard" component={Dashboard} />
+        <Route path="/signUp" component={SignUp} />
+        <Route path="/logIn" component={Login} />
+        <Route path="/celebrate" component={Celebrate} />
+        <Route path="/wishes" component={DisplayComments} />
+        <Route path="/dashBoard" component={Dashboard} />
       </Grid >
     </Router>
   )
