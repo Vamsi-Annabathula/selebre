@@ -1,4 +1,4 @@
-export default (theme) => ({
+const styles = (theme) => ({
     celebMantraText: {
         position: 'absolute',
         top: '30%'
@@ -20,3 +20,4 @@ export default (theme) => ({
         height: '400px',
     }
 })
+export default styles

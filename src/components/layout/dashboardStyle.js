@@ -1,7 +1,7 @@
 import bg from '../../assests/images/banner.jpg';
 const drawerWidth = 240;
 
-export default (theme) => ({
+const styles = (theme) => ({
     root: {
         display: 'flex',
     },
@@ -85,3 +85,4 @@ export default (theme) => ({
 
     }
 })
+export default styles

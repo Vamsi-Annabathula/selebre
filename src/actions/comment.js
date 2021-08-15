@@ -75,7 +75,7 @@ export const postComment = (commentorId, comment) => {
                 headers: new Headers({ 'content-type': 'application/json' }),
                 body: JSON.stringify({givenToUserId: 3, comments: comment})
         });
-            const res = await handleErrors(response);
+            await handleErrors(response);
             dispatch(postCommentSuccess());
         }
         catch(error){

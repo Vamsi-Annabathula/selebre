@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './style.js'
 import { makeStyles } from '@material-ui/core/styles';
@@ -6,7 +6,7 @@ import {
     Button,
     Grid
 } from '@material-ui/core';
-import { postMantra, saveMantra } from '../../actions/mantra.js';
+import { postMantra } from '../../actions/mantra.js';
 
 const useStyles = makeStyles(styles);
 
@@ -17,25 +17,22 @@ function RecordMantra(props) {
         onStopButtonText,
         displayText,
         isCeleb,
-        blowCandles
     } = props;
     //const defaultMantra = "Blow the candles"
     const [mantra, setMantra] = useState()
     const classes = useStyles();
     const [note, setNote] = useState(initialButtonText);
-    const [checkSpell, setCheckSpell] = useState();
     const dispatch = useDispatch();
 
     const isMantraRecordingFailed = useSelector(state => state.mantra?.error);
     const isMantraRecorded = useSelector(state => state.mantra?.isMantraRecorded);
     const recordingError = useSelector(state => state.mantra?.errorInfo);
-    const defaultMantra = useSelector(state => state.mantra?.mantra);
 
-    useEffect(() => {
-        if (checkSpell === defaultMantra) {
-            blowCandles()
-        }
-    }, [checkSpell])
+    // useEffect(() => {
+    //     if (checkSpell === defaultMantra) {
+    //         blowCandles()
+    //     }
+    // }, [checkSpell, defaultMantra, blowCandles])
 
     const runSpeechRecognition = () => {
         let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -56,7 +53,6 @@ function RecordMantra(props) {
         recognition.onresult = function (event) {
             let transcript = event.results[0][0].transcript;
             setMantra(transcript);
-            if (isCeleb) setCheckSpell(transcript)
         };
 
         // start recognition

@@ -1,4 +1,4 @@
-export default (theme) => ({
+const styles = (theme) => ({
     icon: {
         marginRight: theme.spacing(2),
     },
@@ -29,3 +29,4 @@ export default (theme) => ({
         padding: theme.spacing(6),
     },
 })
+export default styles

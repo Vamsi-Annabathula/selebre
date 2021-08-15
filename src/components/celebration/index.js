@@ -11,8 +11,7 @@ import {
 } from '@material-ui/core';
 import './style.css';
 import styles from './style';
-import RecordMantra from '../recordMantra';
-import { fetchRecordedMantra, fetchPostedMantra } from '../../actions/mantra';
+import {  fetchPostedMantra } from '../../actions/mantra';
 import { ADMINID } from '../../utils';
 import bdySong from '../../assests/music/bdy.mp3';
 
@@ -33,7 +32,7 @@ export default function Celebrate() {
     useEffect(() => {
         if (defaultMantra != null)
             dispatch(fetchPostedMantra(ADMINID))
-    }, []);
+    });
 
     useEffect(() => {
         if (checkSpell === defaultMantra) {
@@ -47,7 +46,7 @@ export default function Celebrate() {
                 setRedirect(true)
             }, 12500)
         }
-    }, [checkSpell])
+    }, [checkSpell, defaultMantra])
 
 
     const runSpeechRecognition = () => {
@@ -83,8 +82,8 @@ export default function Celebrate() {
                 <audio ref={audioRef} src={bdySong}></audio>
 
                 {
-                    flame != "off" ? (<>
-                        <Grid item className={classes.celebMantraText} style={{ display: flame == "Off" ? "none" : "" }}>
+                    flame !== "off" ? (<>
+                        <Grid item className={classes.celebMantraText} style={{ display: flame === "Off" ? "none" : "" }}>
 
                             <Typography component="h1" variant="h6" color="inherit" noWrap >
                                 Here, your mantra to get started😉:
@@ -129,7 +128,7 @@ export default function Celebrate() {
                     </Grid>
                 ) :
                     <Grid item>
-                        <img src="https://i.gifer.com/9FMN.gif" className={classes.cakeGif} />
+                        <img src="https://i.gifer.com/9FMN.gif" className={classes.cakeGif} alt = "cake-cutting"/>
                     </Grid>
                 }
                 {

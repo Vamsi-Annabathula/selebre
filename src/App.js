@@ -1,10 +1,8 @@
-import { useState, React } from 'react';
-import { useSelector, useStore } from 'react-redux';
-import { Route, BrowserRouter as Router, Redirect } from "react-router-dom";
+import {  React } from 'react';
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import Typography from '@material-ui/core/Typography';
 import Dashboard from './components/layout/dashboard'
 import SignUp from './components/auth/signUp';
-import Box from '@material-ui/core/Box';
 import Login from './components/auth/login';
 import Celebrate from './components/celebration';
 import styles from './AppStyle';

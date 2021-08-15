@@ -1,4 +1,4 @@
-export default (theme) => ({
+const styles = (theme) => ({
     paper: {
         marginTop: theme.spacing(8),
         display: 'flex',
@@ -17,3 +17,4 @@ export default (theme) => ({
         margin: theme.spacing(3, 0, 2),
     },
 })
+export default styles

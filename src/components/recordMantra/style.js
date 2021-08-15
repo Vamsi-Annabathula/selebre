@@ -1,4 +1,4 @@
-export default (theme) => ({
+ const styles = (theme) => ({
   mantraHeader: {
     margin: '10px',
   },
@@ -6,3 +6,4 @@ export default (theme) => ({
     margin: '10px'
   }
 })
+export default styles

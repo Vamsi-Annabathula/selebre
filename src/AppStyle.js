@@ -1,7 +1,7 @@
 import banner from './assests/images/banner.jpg';
 import bg from './assests/images/bg3.jpg';
 
-export default (theme) => ({
+const styles = (theme) => ({
     app: {
         textAlign: 'center',
         backgroundImage: `url(${bg})`,
@@ -28,3 +28,5 @@ export default (theme) => ({
     //     margin: 30
     // }
 })
+
+export default styles

@@ -23,7 +23,7 @@ const Comment = (state = initialState, action) => {
                 loading: true
             }
         case FETCH_ALL_COMMENTS_SUCCESS:
-            if (action.payload.comments.length == 0) {
+            if (action.payload.comments.length === 0) {
                 return {
                     ...state,
                     comments: state.comments,

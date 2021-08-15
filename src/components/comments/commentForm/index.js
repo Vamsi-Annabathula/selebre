@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -37,12 +37,12 @@ export default function CommentForm() {
         <Typography component="h1" variant="h5">
           Add Wish
         </Typography>
-        <form method = "post" className={classes.form} onSubmit = {onSubmitHandler}>
+        <form method="post" className={classes.form} onSubmit={onSubmitHandler}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12}>
               <TextField
-                value = {commentValue}
-                onChange = {handleOnChange}
+                value={commentValue}
+                onChange={handleOnChange}
                 autoComplete="comment"
                 name="comment"
                 variant="outlined"
