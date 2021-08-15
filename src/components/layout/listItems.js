@@ -13,12 +13,14 @@ import './listItems.css'
 
 export const mainListItems = (
     <div>
-        <ListItem button>
-            <ListItemIcon>
-                <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Employees" />
-        </ListItem>
+        <Link to="/addEmployee" className="menu">
+            <ListItem button>
+                <ListItemIcon>
+                    <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Employees" />
+            </ListItem>
+        </Link>
         <Link to="/addMantra" className="menu">
             <ListItem button>
                 <ListItemIcon>
@@ -63,7 +65,7 @@ export const secondaryListItems = (
                 </ListItemIcon>
                 <ListItemText primary="Sign Up" />
             </ListItem>
-        </Link> 
+        </Link>
         <Link to="/logIn" className="menu">
             <ListItem button>
                 <ListItemIcon>
@@ -71,7 +73,7 @@ export const secondaryListItems = (
                 </ListItemIcon>
                 <ListItemText primary="Log In" />
             </ListItem>
-        </Link> 
+        </Link>
         {/* <ListItem button>
             <ListItemIcon>
                 <AssignmentIcon />

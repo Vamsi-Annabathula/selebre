@@ -22,6 +22,7 @@ import CommentForm from '../comments/commentForm';
 import styles from './dashboardStyle'
 import Celebrate from '../celebration';
 import DisplayComments from '../comments/displayComments';
+import AddEmployee from '../employees/addEmployee';
 
 
 
@@ -96,7 +97,7 @@ export default function Dashboard() {
                   blowCandles={() => {}}
                 />
               } />
-              
+              <Route path="/addEmployee" component={AddEmployee} />
               <Route path="/addWish" component={CommentForm} />
             </Grid>
           </Grid>

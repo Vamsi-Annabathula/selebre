@@ -34,7 +34,7 @@ function App() {
         </AppBar>
         <Route path="/signUp" component={SignUp} />
         <Route path="/logIn" component={Login} />
-        <Route exact path={["/dashBoard", "/", "/addMantra", "/addWish"]} component={Dashboard} />
+        <Route exact path={["/dashBoard", "/", "/addMantra", "/addWish", "/addEmployee"]} component={Dashboard} />
         <Route path="/wishes" component={DisplayComments} />
         <Route path="/celebrate" component={Celebrate} />
       </Grid >
