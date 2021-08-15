@@ -4,7 +4,8 @@ import styles from './style.js'
 import { makeStyles } from '@material-ui/core/styles';
 import {
     Button,
-    Grid
+    Grid,
+    Typography
 } from '@material-ui/core';
 import { postMantra } from '../../actions/mantra.js';
 
@@ -68,6 +69,9 @@ function RecordMantra(props) {
     }
     return (
         <Grid className={classes.mantraHeader}>
+            <Typography component="h5" variant="h6" color="inherit" >
+                Examples of Mantra : "blow the candles"
+            </Typography>
             <Grid item>
                 <Button variant="contained" color="primary" onClick={runSpeechRecognition}>
                     {note}
