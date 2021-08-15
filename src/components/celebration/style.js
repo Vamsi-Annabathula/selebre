@@ -14,8 +14,8 @@ export default (theme) => ({
     cakeGif: {
         borderRadius: '56%',
         width: '450px',
-        top: '23%',
-        left: '46%',
+        top: '30%',
+        left: '36%',
         position: 'absolute',
         height: '400px',
     }

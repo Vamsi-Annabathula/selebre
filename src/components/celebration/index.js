@@ -6,7 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
     Grid,
     Button,
-    Typography
+    Typography,
+    Container
 } from '@material-ui/core';
 import './style.css';
 import styles from './style';
@@ -37,13 +38,14 @@ export default function Celebrate() {
     useEffect(() => {
         if (checkSpell === defaultMantra) {
             setFlame("off");
-            audioRef.current.play()
+            audioRef.current.play();
+            
             setTimeout(() => {
                 setPlayGif(true)
-            }, 6000);
+            }, 2000);
             setTimeout(() => {
                 setRedirect(true)
-            }, 18000)
+            }, 12500)
         }
     }, [checkSpell])
 
@@ -75,54 +77,68 @@ export default function Celebrate() {
     }
 
     return (
-        <Grid component="main" maxWidth="xs" direction='row'>
-            <CssBaseline />
-            <Grid item className={classes.celebMantraText}>
-                <audio ref={audioRef} src={bdySong}></audio>
-                <Typography component="h1" variant="h6" color="inherit" noWrap >
-                    Say this mantra to blow the candle -- "{defaultMantra}"
-                </Typography>
-            </Grid>
+        <Container>
+            <Grid component="main" maxWidth="xs" direction='row'>
+                <CssBaseline />
 
-            <Grid item className={classes.recordMantra} >
-                <Grid className={classes.mantraHeader}>
+                {
+                    flame != "off" ? (<>
+                        <Grid item className={classes.celebMantraText} style={{ display: flame == "Off" ? "none" : "" }}>
+
+                            <audio ref={audioRef} src={bdySong}></audio>
+                            <Typography component="h1" variant="h6" color="inherit" noWrap >
+                                Here, your mantra to get started😉:
+                                <br></br>
+                                "{defaultMantra}"
+                            </Typography>
+                        </Grid>
+
+                        <Grid item className={classes.recordMantra} >
+                            <Grid className={classes.mantraHeader}>
+                                <Grid item>
+                                    <Button className={"spell-button"} variant="contained" color="primary" onClick={runSpeechRecognition}>
+                                        {note}
+                                    </Button>
+                                </Grid>
+                                <Grid item className={classes.mantraText} style={{ fontSize: "1.25rem", textAlign: "left" }}>
+                                    You spelled - {mantra}
+                                </Grid>
+                            </Grid>
+                        </Grid> </>)
+                        :
+                        null
+                }
+                <div className="title">🤩 Let the Celebration Begin!🥳</div>
+                
+
+                {!playGif ? (
                     <Grid item>
-                        <Button variant="contained" color="primary" onClick={runSpeechRecognition}>
-                            {note}
-                        </Button>
-                    </Grid>
-                    <Grid item className={classes.mantraText}>
-                        You spelled - {mantra}
-                    </Grid>
-                </Grid>
-            </Grid>
-            {!playGif ? (
-                <Grid item>
-                    <div className="cake">
-                        <div className="plate"></div>
-                        <div className="layer layer-bottom"></div>
-                        <div className="layer layer-middle"></div>
-                        <div className="layer layer-top"></div>
-                        <div className="icing"></div>
-                        <div className="drip drip1"></div>
-                        <div className="drip drip2"></div>
-                        <div className="drip drip3"></div>
-                        <div className="candle">
-                            <div className={flame}> </div>
+                        <div className="cake">
+                            <div className="plate"></div>
+                            <div className="layer layer-bottom"></div>
+                            <div className="layer layer-middle"></div>
+                            <div className="layer layer-top"></div>
+                            <div className="icing"></div>
+                            <div className="drip drip1"></div>
+                            <div className="drip drip2"></div>
+                            <div className="drip drip3"></div>
+                            <div className="candle">
+                                <div className={flame}> </div>
+                            </div>
                         </div>
-                    </div>
-                </Grid>
-            ) :
-                <Grid item>
-                    <img src="https://i.gifer.com/9FMN.gif" className={classes.cakeGif} />
-                </Grid>
-            }
-            {
-                redirect ?
-                    <Redirect to='/wishes' />
-                    :
-                    null
-            }
-        </Grid >
+                    </Grid>
+                ) :
+                    <Grid item>
+                        <img src="https://i.gifer.com/9FMN.gif" className={classes.cakeGif} />
+                    </Grid>
+                }
+                {
+                    redirect ?
+                        <Redirect push to='/wishes' />
+                        :
+                        null
+                }
+            </Grid >
+        </Container>
     );
 }
