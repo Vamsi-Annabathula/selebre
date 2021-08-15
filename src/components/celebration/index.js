@@ -39,7 +39,7 @@ export default function Celebrate() {
         if (checkSpell === defaultMantra) {
             setFlame("off");
             audioRef.current.play();
-            
+
             setTimeout(() => {
                 setPlayGif(true)
             }, 2000);
@@ -80,12 +80,12 @@ export default function Celebrate() {
         <Container>
             <Grid component="main" maxWidth="xs" direction='row'>
                 <CssBaseline />
+                <audio ref={audioRef} src={bdySong}></audio>
 
                 {
                     flame != "off" ? (<>
                         <Grid item className={classes.celebMantraText} style={{ display: flame == "Off" ? "none" : "" }}>
 
-                            <audio ref={audioRef} src={bdySong}></audio>
                             <Typography component="h1" variant="h6" color="inherit" noWrap >
                                 Here, your mantra to get started😉:
                                 <br></br>
@@ -109,7 +109,7 @@ export default function Celebrate() {
                         null
                 }
                 <div className="title">🤩 Let the Celebration Begin!🥳</div>
-                
+
 
                 {!playGif ? (
                     <Grid item>
